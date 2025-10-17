@@ -43,7 +43,7 @@ public class PassengerController {
                 .body(created);
     }
 
-    @PutMapping
+    @PutMapping("/api/passengers/{id}")
     public ResponseEntity<Passenger> update(@PathVariable String id, @Valid @RequestBody Passenger p) {
         Optional<Passenger> maybe = service.findById(p.getPassengerId());
         if(maybe.isPresent()) {
@@ -53,5 +53,17 @@ public class PassengerController {
             return ResponseEntity.notFound().build();
         }
         return null;
+    }
+
+    @DeleteMapping("/api/passengers/{id}")
+    public ResponseEntity<Void> delete(@PathVariable String id) {
+        Optional<Passenger> maybe = service.findById(id);
+        if(maybe.isPresent()) {
+            service.deleteById(maybe.get().getPassengerId());
+            return ResponseEntity.noContent().build();
+        }
+        else{
+            return ResponseEntity.notFound().build();
+        }
     }
 }
