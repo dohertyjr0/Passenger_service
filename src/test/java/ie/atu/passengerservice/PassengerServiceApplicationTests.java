@@ -1,5 +1,7 @@
 package ie.atu.passengerservice;
 
+import ie.atu.passengerservice.model.Passenger;
+import ie.atu.passengerservice.service.PassengerServiceApplication;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
