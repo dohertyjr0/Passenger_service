@@ -1,7 +1,7 @@
 package ie.atu.passengerservice;
 
 import ie.atu.passengerservice.model.Passenger;
-import ie.atu.passengerservice.service.PassengerServiceApplication;
+import ie.atu.passengerservice.service.PassengerService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -11,12 +11,12 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-class PassengerServiceApplicationTests {
-    private PassengerServiceApplication service;
+class PassengerServiceTests {
+    private PassengerService service;
 
     @BeforeEach
     void setUp() {
-        service = new PassengerServiceApplication();
+        service = new PassengerService();
     }
 
     @Test
