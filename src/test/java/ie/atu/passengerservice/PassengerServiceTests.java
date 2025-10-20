@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -51,5 +52,16 @@ class PassengerServiceTests {
                         .build()
                 )
                 );
+    }
+
+    @Test
+    void updateMissing(){
+        Passenger john = (Passenger.builder()
+                .passengerId("P3")
+                .name("John")
+                .email("john@atu.ie")
+                .build());
+
+        assertThrows(NoSuchElementException.class, () -> service.update(john));
     }
 }

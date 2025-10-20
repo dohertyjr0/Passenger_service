@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -34,11 +35,13 @@ public class PassengerService {
     }
 
     public Passenger update(Passenger p) {
-        if(findById(p.getPassengerId()).isPresent()) {
-            throw new IllegalArgumentException("passenger already exists");
+        for(int i = 0; i < store.size(); i++) {
+            if(store.get(i).getPassengerId().equals(p.getPassengerId())) {
+                store.set(i, p);
+                return p;
+            }
         }
-        store.add(p);
-        return p;
+        throw new NoSuchElementException("passenger not found");
     }
 
     public boolean deleteById(String id) {
