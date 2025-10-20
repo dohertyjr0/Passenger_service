@@ -64,4 +64,11 @@ class PassengerServiceTests {
 
         assertThrows(NoSuchElementException.class, () -> service.update(john));
     }
+
+    @Test
+    void deleteExisiting(){
+        boolean deleted = service.deleteById("P1");
+        assertTrue(deleted);
+        assertFalse(service.findById("P1").isPresent());
+    }
 }
