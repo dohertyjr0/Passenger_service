@@ -45,14 +45,18 @@ public class PassengerController {
 
     @PutMapping("/api/passengers/{id}")
     public ResponseEntity<Passenger> update(@PathVariable String id, @Valid @RequestBody Passenger p) {
-        Optional<Passenger> maybe = service.findById(p.getPassengerId());
+        Optional<Passenger> maybe = service.findById(id);
         if(maybe.isPresent()) {
             Passenger updated = maybe.get();
+            updated.setPassengerId(p.getPassengerId());
+            updated.setName(p.getName());
+            updated.setEmail(p.getEmail());
+            service.update(updated);
+            return ResponseEntity.ok(updated);
         }
-        else{
+        else {
             return ResponseEntity.notFound().build();
         }
-        return null;
     }
 
     @DeleteMapping("/api/passengers/{id}")
